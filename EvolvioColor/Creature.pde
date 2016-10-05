@@ -110,6 +110,7 @@ class Creature extends SoftBody {
     }
     public void drawBrain(PFont font, float scaleUp, int mX, int mY) {
         final float neuronSize = 0.4;
+        int label_length = 0;
         noStroke();
         fill(0, 0, 0.4);
         rect((-1.7-neuronSize)*scaleUp, -neuronSize*scaleUp, (2.4+BRAIN_WIDTH+neuronSize*2)*scaleUp, (BRAIN_HEIGHT+neuronSize*2)*scaleUp);
@@ -122,7 +123,12 @@ class Creature extends SoftBody {
         "1Sat", "1Bri", "2Hue", "2Sat", "2Bri", "Size", "MHue", "Mem", "Const."};
         String[] outputLabels = {"BHue", "Accel.", "Turn", "Eat", "Fight", "Birth", "How funny?",
         "How popular?", "How generous?", "How smart?", "MHue", "Mem", "Const."};
-        for(int y = 0; y < BRAIN_HEIGHT; y++) {
+        if (inputLabels.length < outputLabels.length) {
+            label_length = inputLabels.length;
+        }else {
+            label_length = outputLabels.length;
+        }
+        for(int y = 0; y < label_length; y++) {
             textAlign(RIGHT);
             text(inputLabels[y], (-neuronSize-0.1)*scaleUp, (y+(neuronSize*0.6))*scaleUp);
             textAlign(LEFT);
